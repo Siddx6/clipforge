@@ -754,7 +754,7 @@ function AuthPage({ mode, setPage, setUser }) {
         </div>
         <div className="card" style={{ padding: 28 }}>
           <button className="btn btn-secondary" style={{ width: "100%", justifyContent: "center", marginBottom: 20 }}
-  onClick={() => window.location.href = "http://localhost:5000/api/v1/auth/google"}>
+  onClick={() => window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`}>
   <span>G</span> Continue with Google
 </button>
           <div className="or-divider"><span className="or-label">or continue with email</span></div>
