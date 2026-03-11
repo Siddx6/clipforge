@@ -186,10 +186,11 @@ const composeVideo = async (audioPath, outputPath, bgVideoPath, options = {}) =>
           console.log('[FFmpeg] ✅ Video composed successfully');
           resolve(outputPath);
         })
-        .on('error', (err) => {
-          console.error('[FFmpeg] ❌ Error:', err.message);
-          reject(new Error(`FFmpeg error: ${err.message}`));
-        })
+       .on('error', (err, stdout, stderr) => {
+  console.error('[FFmpeg] ❌ Error:', err.message);
+  console.error('[FFmpeg] stderr:', stderr);
+  reject(new Error(`FFmpeg error: ${err.message}`));
+})
         .run();
 
     } catch (err) {
