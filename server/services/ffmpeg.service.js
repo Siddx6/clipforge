@@ -2,9 +2,10 @@ const ffmpeg = require('fluent-ffmpeg');
 const path = require('path');
 const fs = require('fs');
 
-ffmpeg.setFfmpegPath('C:\\ffmpeg\\bin\\ffmpeg.exe');
-ffmpeg.setFfprobePath('C:\\ffmpeg\\bin\\ffprobe.exe');
-
+if (process.platform === 'win32') {
+  ffmpeg.setFfmpegPath('C:\\ffmpeg\\bin\\ffmpeg.exe');
+  ffmpeg.setFfprobePath('C:\\ffmpeg\\bin\\ffprobe.exe');
+}
 // Get audio duration in seconds
 const getAudioDuration = (audioPath) => {
   return new Promise((resolve, reject) => {
