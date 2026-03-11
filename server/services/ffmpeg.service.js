@@ -35,13 +35,13 @@ const generateSubtitleTimings = (script, duration) => {
 };
 
 // Map frontend font names → system font file paths that FFmpeg can find on Windows
+const isWindows = process.platform === 'win32';
 const FONT_MAP = {
-  'impact':      'C\\:/Windows/Fonts/impact.ttf',
-  'arial':       'C\\:/Windows/Fonts/arialbd.ttf',
-  'montserrat':  'C\\:/Windows/Fonts/arialbd.ttf',
-  'syne':        'C\\:/Windows/Fonts/arialbd.ttf',
+  'impact':     isWindows ? 'C\\:/Windows/Fonts/impact.ttf'  : '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+  'arial':      isWindows ? 'C\\:/Windows/Fonts/arialbd.ttf' : '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+  'montserrat': isWindows ? 'C\\:/Windows/Fonts/arialbd.ttf' : '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+  'syne':       isWindows ? 'C\\:/Windows/Fonts/arialbd.ttf' : '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
 };
-
 // Convert hex color (#RRGGBB) → FFmpeg color string (0xRRGGBB or named)
 const hexToFfmpegColor = (hex) => {
   if (!hex || !hex.startsWith('#')) return 'yellow';
